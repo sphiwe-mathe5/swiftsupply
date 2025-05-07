@@ -1,0 +1,139 @@
+{% load static %} 
+{% load socialaccount %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        />
+        <title>ASCENTRIC INTEL AGENCY - Sign In</title>
+        <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="{% static 'css/auth.css' %}" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+            integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+        <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+        <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+            <section class="forms">
+                <!-- Login Form -->
+                <div class="form login">
+                    <div class="form-header">
+                        <div class="nav__logo">
+                            <a href="#">Swift supply<span> solutions</span></a>
+                        </div>
+                        <p>Welcome Back</p>
+                    </div>
+                    <div class="form-content">
+                        {% if messages %}
+                        <div class="alerts">
+                            {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                        <form action="{% url 'login' %}" method="POST">
+                            {% csrf_token %}
+                            <div class="field input-field">
+                                <label for="login-email">Email</label>
+                                <input type="email" id="login-email" name="email" placeholder="your@email.com" class="input" required />
+                            </div>
+                            <div class="field input-field">
+                                <label for="login-password">Password</label>
+                                <div class="password-container">
+                                    <input
+                                        type="password"
+                                        id="login-password"
+                                        name="password"
+                                        placeholder="Enter your password"
+                                        class="password"
+                                        required
+                                    />
+                                    <i class="bx bx-hide eye-icon"></i>
+                                </div>
+                            </div>
+                            <div class="field button-field">
+                                <button type="submit" class="btn-next">Sign in</button>
+                            </div>
+                        </form>
+                    </div>
+    
+                    <div class="form-link forgot-link">
+                        <a href="#" class="forgotpassword-link">Forgot password?</a>
+                    </div>
+                    <div class="form-link">
+                        <span>Don't have an account? <a href="{% url 'signup' %}" class="link signup-link">Sign up</a></span>
+                    </div>
+                </div>
+    
+                <!-- Forgot Password Form -->
+                <div class="form forgotpasswordform" style="display: none">
+                    <div class="form-header">
+                        <h1>Forgot Password</h1>
+                        <p>We'll send you a reset link</p>
+                    </div>
+                    <div class="form-content">
+                        <form action="{% url 'forgot_password' %}" method="POST">
+                            {% csrf_token %}
+                            <div class="field input-field">
+                                <label for="forgot-email">Email</label>
+                                <input type="email" id="forgot-email" name="email" placeholder="your@email.com" class="input" required />
+                            </div>
+                            <div class="button-group">
+                                <button type="button" class="backbtn secondary-button">Back</button>
+                                <button type="submit" class="primary-button">Send Reset Link</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <script>
+            const forms = document.querySelector(".forms");
+            const pwShowHide = document.querySelectorAll(".eye-icon");
+            const forgotPasswordLink = document.querySelector(".forgotpassword-link");
+            const forgotPasswordBox = document.querySelector(".forgotpasswordform");
+            const loginBox = document.querySelector(".login");
+            const backBtn = document.querySelector(".backbtn");
+            pwShowHide.forEach((eyeIcon) => {
+                eyeIcon.addEventListener("click", () => {
+                    let pwFields = eyeIcon.parentElement.parentElement.querySelectorAll(".password");
+                    pwFields.forEach((password) => {
+                        if (password.type === "password") {
+                            password.type = "text";
+                            eyeIcon.classList.replace("bx-hide", "bx-show");
+                        } else {
+                            password.type = "password";
+                            eyeIcon.classList.replace("bx-show", "bx-hide");
+                        }
+                    });
+                });
+            });
+            if (forgotPasswordLink) {
+                forgotPasswordLink.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    forgotPasswordBox.style.display = "block";
+                    loginBox.style.display = "none";
+                });
+            }
+            if (backBtn) {
+                backBtn.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    forgotPasswordBox.style.display = "none";
+                    loginBox.style.display = "block";
+                });
+            }
+        </script>
+    </body>
+</html>

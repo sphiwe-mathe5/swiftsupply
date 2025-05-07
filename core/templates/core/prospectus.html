@@ -1,0 +1,468 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christian School</title>
+    <link rel="icon" href="https://storage.googleapis.com/textiletrace-bucket/post_images/BACKGROUND%20REMOVED.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        .header {
+            background-color: #fff;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+            margin-right: 2rem;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .logo h5 {
+            font-size: 1.2rem;
+            color: #0047AB;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .nav-container {
+            display: flex;
+            flex-grow: 1;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            justify-content: center;
+            flex-grow: 1;
+        }
+
+        .nav-menu li {
+            margin: 0 1rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #0047AB;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+            padding: 0.5rem 0;
+            white-space: nowrap;
+            margin-top: -50px;
+        }
+
+        .nav-menu a:hover {
+            color: #1E90FF;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #1E90FF;
+            transition: width 0.3s;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta-container {
+            display: flex;
+            margin-left: 2rem;
+            flex-shrink: 0;
+        }
+
+        .nav-cta {
+            margin: 0 0.5rem;
+        }
+        
+        .nav-cta a {
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        
+        .nav-cta a.book-tour {
+            background-color: #0047AB;
+            color: white;
+        }
+        
+        .nav-cta a.book-tour:hover {
+            background-color: #003d91;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-cta a.enquire {
+            background-color: #1E90FF;
+            color: white;
+        }
+        
+        .nav-cta a.enquire:hover {
+            background-color: #0077ea;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #0047AB;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 1024px) {
+            .nav-menu li {
+                margin: 0 0.7rem;
+            }
+            
+            .nav-cta a {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 1rem;
+            }
+            
+            .nav-container {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: #fff;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            }
+            
+            .nav-container.active {
+                display: flex;
+            }
+            
+            .nav-menu {
+                flex-direction: column;
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+            
+            .nav-menu li {
+                margin: 0.5rem 0;
+                text-align: center;
+            }
+            
+            .nav-cta-container {
+                flex-direction: column;
+                width: 100%;
+                margin-left: 0;
+            }
+            
+            .nav-cta {
+                margin: 0.5rem 0;
+                width: 100%;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+        /* Curriculum Section Styles */
+        .curriculum-section {
+            background-color: #f0f8ff;
+            padding: 60px 0;
+        }
+        
+        .curriculum-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #555;
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+        }
+        .curriculum-grade {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            width: 220px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .curriculum-grade:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .grade-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .grade-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #e6f2ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+        }
+        
+        .grade-icon svg {
+            width: 20px;
+            height: 20px;
+            color: #0047AB;
+        }
+        
+        .grade-header h3 {
+            color: #0047AB;
+            font-size: 1.2rem;
+            margin: 0;
+        }
+        
+        .subject-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .subject-list li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #eee;
+            font-size: 0.95rem;
+            color: #555;
+        }
+        
+        .subject-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .curriculum-note {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 40px;
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .curriculum-note p {
+            color: #555;
+            font-size: 1rem;
+            margin: 0;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .curriculum-container {
+                gap: 20px;
+            }
+            
+            .curriculum-grade {
+                width: 200px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .curriculum-container {
+                gap: 15px;
+            }
+            
+            .curriculum-grade {
+                width: calc(50% - 15px);
+                padding: 20px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .curriculum-grade {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <img src="https://storage.googleapis.com/textiletrace-bucket/post_images/BACKGROUND%20REMOVED.png" alt="Paterson Park Primary School Logo" class="logo-img">
+                <h5>Paterson Park Primary School</h5>
+                
+            </div>
+            <button class="mobile-menu-btn" aria-label="Toggle menu">☰</button>
+            <ul class="nav-menu">
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'media' %}">Media</a></li>
+                <li><a href="{% url 'gallery' %}">Gallery</a></li>
+                <li><a href="{% url 'admission' %}">Admissions</a></li>
+                <li><a href="{% url 'team' %}">Team</a></li>
+                <li class="nav-cta"><a href="#" class="cta-button book-tour" id="bookTourBtn">Book a Tour</a></li>
+                <li class="nav-cta"><a href="#" class="cta-button enquire" id="enquireBtn">Enquire</a></li>
+            </ul>
+        </div>
+    </header><br><br><br>
+
+<section class="section curriculum-section">
+    <div class="container">
+        <div class="section-title">
+            <h2>Our Curriculum</h2>
+        </div>
+        <div class="section-subtitle">
+            Paterson Park Primary School offers a comprehensive curriculum that develops the whole child through academic excellence and Christian values.
+        </div>
+        
+        <div class="curriculum-container">
+            <div class="curriculum-grade">
+                <div class="grade-header">
+                    <div class="grade-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
+                        </svg>
+                    </div>
+                    <h3>Grade R</h3>
+                </div>
+                <ul class="subject-list">
+                    <li>English</li>
+                    <li>Maths</li>
+                    <li>Life Skills</li>
+                    <li>Bible</li>
+                </ul>
+            </div>
+            
+            <div class="curriculum-grade">
+                <div class="grade-header">
+                    <div class="grade-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                    </div>
+                    <h3>Grade 1-3</h3>
+                </div>
+                <ul class="subject-list">
+                    <li>English</li>
+                    <li>Afrikaans</li>
+                    <li>Maths</li>
+                    <li>Life Skills</li>
+                    <li>isiZulu</li>
+                    <li>Bible</li>
+                </ul>
+            </div>
+            
+            <div class="curriculum-grade">
+                <div class="grade-header">
+                    <div class="grade-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                        </svg>
+                    </div>
+                    <h3>Grade 4-6</h3>
+                </div>
+                <ul class="subject-list">
+                    <li>English</li>
+                    <li>Afrikaans</li>
+                    <li>Maths</li>
+                    <li>Life Skills</li>
+                    <li>Social Science</li>
+                    <li>Natural Science</li>
+                    <li>Technology</li>
+                    <li>isiZulu</li>
+                    <li>Bible</li>
+                </ul>
+            </div>
+            
+            <div class="curriculum-grade">
+                <div class="grade-header">
+                    <div class="grade-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                        </svg>
+                    </div>
+                    <h3>Grade 7</h3>
+                </div>
+                <ul class="subject-list">
+                    <li>English</li>
+                    <li>Afrikaans</li>
+                    <li>Maths</li>
+                    <li>Life Skills</li>
+                    <li>Social Science</li>
+                    <li>Natural Science</li>
+                    <li>Technology</li>
+                    <li>isiZulu</li>
+                    <li>Bible</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="curriculum-note">
+            <p>Our curriculum follows the CAPS guidelines as prescribed by the Gauteng Department of Education, with the addition of Bible studies as part of our Christian education focus.</p>
+        </div>
+    </div>
+</section>

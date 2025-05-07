@@ -1,0 +1,1340 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Paterson Park Primary School</title>
+    <link rel="icon" href="https://storage.googleapis.com/textiletrace-bucket/post_images/BACKGROUND%20REMOVED.png">
+    <style>
+        /* Base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        .header {
+            background-color: #fff;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+            margin-right: 2rem;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .logo h5 {
+            font-size: 1.2rem;
+            color: #0047AB;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .nav-container {
+            display: flex;
+            flex-grow: 1;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            justify-content: center;
+            flex-grow: 1;
+        }
+
+        .nav-menu li {
+            margin: 0 1rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #0047AB;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+            padding: 0.5rem 0;
+            white-space: nowrap;
+            margin-top: -50px;
+        }
+
+        .nav-menu a:hover {
+            color: #1E90FF;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #1E90FF;
+            transition: width 0.3s;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta-container {
+            display: flex;
+            margin-left: 2rem;
+            flex-shrink: 0;
+        }
+
+        .nav-cta {
+            margin: 0 0.5rem;
+        }
+        
+        .nav-cta a {
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        
+        .nav-cta a.book-tour {
+            background-color: #0047AB;
+            color: white;
+        }
+        
+        .nav-cta a.book-tour:hover {
+            background-color: #003d91;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-cta a.enquire {
+            background-color: #1E90FF;
+            color: white;
+        }
+        
+        .nav-cta a.enquire:hover {
+            background-color: #0077ea;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #0047AB;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 1024px) {
+            .nav-menu li {
+                margin: 0 0.7rem;
+            }
+            
+            .nav-cta a {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 1rem;
+            }
+            
+            .nav-container {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: #fff;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            }
+            
+            .nav-container.active {
+                display: flex;
+            }
+            
+            .nav-menu {
+                flex-direction: column;
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+            
+            .nav-menu li {
+                margin: 0.5rem 0;
+                text-align: center;
+            }
+            
+            .nav-cta-container {
+                flex-direction: column;
+                width: 100%;
+                margin-left: 0;
+            }
+            
+            .nav-cta {
+                margin: 0.5rem 0;
+                width: 100%;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+        .slideshow-container {
+            margin-top: 84px; /* Match header height exactly */
+            position: relative;
+            height: 550px;
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide-content {
+            padding: 3rem 4rem;
+            border-radius: 8px;
+            max-width: 70%;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .slide h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            color: #0047AB;
+            letter-spacing: 0.5px;
+        }
+
+        .slide p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .slide-btn {
+            background-color: #0047AB;
+            color: white;
+            border: none;
+            padding: 0.9rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 10px rgba(0, 71, 171, 0.3);
+        }
+
+        .slide-btn:hover {
+            background-color: #1E90FF;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 71, 171, 0.4);
+        }
+
+        /* Slide 1 specific styles */
+        .slide-1 {
+            
+            background-color: #f0f8ff; /* Very light blue background */
+        }
+
+        .slide-1 .school-logo {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 2rem;
+            background-color: white;
+            border-radius: 50%;
+            padding: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Slide 2 specific styles */
+        .slide-2 {
+            background-color: #ffffff;
+        }
+
+        .news-flash {
+            background-color: #e60000;
+            color: white;
+            padding: 2.5rem 3rem;
+            border-radius: 12px;
+            transform: rotate(-1deg);
+            box-shadow: 0 8px 25px rgba(230, 0, 0, 0.3);
+            max-width: 650px;
+            animation: gentle-pulse 3s infinite;
+        }
+
+        @keyframes gentle-pulse {
+            0% { transform: rotate(-1deg) scale(1); }
+            50% { transform: rotate(-1deg) scale(1.03); }
+            100% { transform: rotate(-1deg) scale(1); }
+        }
+
+        .news-flash h2 {
+            font-size: 2.4rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .news-flash p {
+            font-size: 1.4rem;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        /* Slide 3 specific styles */
+        .slide-3 {
+            
+            background-position: center;
+            background-size: cover;
+        }
+
+        /* Slideshow navigation */
+        .slideshow-nav {
+            position: absolute;
+            bottom: 30px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .slideshow-nav-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.7);
+            margin: 0 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .slideshow-nav-dot.active {
+            background-color: white;
+            border: 2px solid #0047AB;
+            transform: scale(1.2);
+        }
+
+        .slideshow-nav-dot:hover {
+            background-color: white;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 992px) {
+            .header-container {
+                padding: 1rem 2rem;
+            }
+            
+            .slide-content {
+                max-width: 80%;
+                padding: 2.5rem 3rem;
+            }
+            
+            .slide h2 {
+                font-size: 2.4rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 1rem 1.5rem;
+            }
+
+            .logo h1 {
+                font-size: 1.3rem;
+            }
+
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 84px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-menu li {
+                margin: 0;
+                padding: 1rem;
+                border-bottom: 1px solid #f0f0f0;
+                text-align: center;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .slideshow-container {
+                height: 450px;
+                margin-top: 75px;
+            }
+
+            .slide h2 {
+                font-size: 2rem;
+            }
+
+            .slide p {
+                font-size: 1.1rem;
+            }
+
+            .slide-content {
+                padding: 2rem;
+                max-width: 85%;
+            }
+
+            .news-flash {
+                padding: 2rem;
+            }
+
+            .news-flash h2 {
+                font-size: 1.8rem;
+            }
+
+            .news-flash p {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .slideshow-container {
+                height: 400px;
+            }
+
+            .slide h2 {
+                font-size: 1.6rem;
+            }
+
+            .slide p {
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .slide-content {
+                padding: 1.5rem;
+                max-width: 90%;
+            }
+
+            .slide-1 .school-logo {
+                width: 80px;
+                height: 80px;
+                margin-bottom: 1rem;
+            }
+
+            .slide-btn {
+                padding: 0.7rem 1.5rem;
+                font-size: 1rem;
+            }
+        }
+        /* Page container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero section */
+        .hero {
+            background-color: #0047AB;
+            color: white;
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.2;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Section styles */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #0047AB;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: #0047AB;
+        }
+
+        /* Introduction section */
+        .intro-section {
+            background-color: white;
+        }
+
+        .intro-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .intro-text {
+            flex: 1;
+        }
+
+        .intro-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .intro-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .intro-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Mission & Vision section */
+        .mission-vision {
+            background-color: #f0f8ff;
+        }
+
+        .mission-vision-container {
+            display: flex;
+            gap: 30px;
+        }
+
+        .mission-box, .vision-box {
+            flex: 1;
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .mission-box:hover, .vision-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .mission-box h3, .vision-box h3 {
+            font-size: 1.8rem;
+            color: #0047AB;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .mission-box p, .vision-box p {
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .mission-icon, .vision-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #e6f2ff;
+            border-radius: 50%;
+        }
+
+        .mission-icon svg, .vision-icon svg {
+            width: 40px;
+            height: 40px;
+            color: #0047AB;
+        }
+
+        /* History section */
+        .history-section {
+            background-color: white;
+        }
+
+        .history-content {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .history-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .history-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .history-text {
+            flex: 1;
+        }
+
+        .history-text h3 {
+            font-size: 2rem;
+            color: #0047AB;
+            margin-bottom: 20px;
+        }
+
+        .history-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            margin-top: 40px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: 2px;
+            background-color: #0047AB;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: #0047AB;
+            border: 3px solid white;
+            box-shadow: 0 0 0 1px #0047AB;
+        }
+
+        .timeline-year {
+            font-weight: 700;
+            color: #0047AB;
+            margin-bottom: 5px;
+        }
+
+        .timeline-text {
+            font-size: 1rem;
+        }
+
+        /* What we offer section */
+        .offerings-section {
+            background-color: #f0f8ff;
+        }
+
+        .offerings-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .offering-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .offering-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .offering-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .offering-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .offering-card:hover .offering-image img {
+            transform: scale(1.1);
+        }
+
+        .offering-content {
+            padding: 25px;
+        }
+
+        .offering-content h3 {
+            font-size: 1.3rem;
+            color: #0047AB;
+            margin-bottom: 15px;
+        }
+
+        .offering-content p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .offering-list {
+            list-style-type: none;
+            margin-top: 15px;
+        }
+
+        .offering-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .offering-list li:last-child {
+            border-bottom: none;
+        }
+
+        .offering-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #0047AB;
+            font-weight: bold;
+        }
+
+        /* Stats section */
+        .stats-section {
+            background-color: #0047AB;
+            color: white;
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .stat-item {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* School hours section */
+        .hours-section {
+            background-color: white;
+        }
+
+        .hours-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #f0f8ff;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .hours-title {
+            text-align: center;
+            font-size: 1.8rem;
+            color: #0047AB;
+            margin-bottom: 30px;
+        }
+
+        .hours-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .hours-text {
+            flex: 1;
+        }
+
+        .hours-text p {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        .hours-text strong {
+            color: #0047AB;
+        }
+
+        .hours-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .hours-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .hours-note {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(0, 71, 171, 0.1);
+            border-left: 4px solid #0047AB;
+            border-radius: 0 5px 5px 0;
+        }
+
+        /* Call to action */
+        .cta-section {
+            text-align: center;
+            padding: 60px 0;
+            background-color: #f0f8ff;
+        }
+
+        .cta-title {
+            font-size: 2rem;
+            color: #0047AB;
+            margin-bottom: 20px;
+        }
+
+        .cta-text {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .cta-btn.primary {
+            background-color: #0047AB;
+            color: white;
+        }
+
+        .cta-btn.primary:hover {
+            background-color: #003d91;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-btn.secondary {
+            background-color: #1E90FF;
+            color: white;
+        }
+
+        .cta-btn.secondary:hover {
+            background-color: #0077ea;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Responsive styles */
+        @media (max-width: 992px) {
+            .intro-content, .history-content, .hours-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .offerings-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .mission-vision-container {
+                flex-direction: column;
+            }
+
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero p {
+                font-size: 1.3rem;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .offerings-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero {
+                padding: 60px 0;
+            }
+
+            .section {
+                padding: 40px 0;
+            }
+
+            .hours-container {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <img src="https://storage.googleapis.com/textiletrace-bucket/post_images/BACKGROUND%20REMOVED.png" alt="Paterson Park Primary School Logo" class="logo-img">
+                <h5>Paterson Park Primary School</h5>
+            </div>
+            <button class="mobile-menu-btn" aria-label="Toggle menu">☰</button>
+            <ul class="nav-menu">
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'media' %}">Media</a></li>
+                <li><a href="{% url 'gallery' %}">Gallery</a></li>
+                <li><a href="{% url 'admission' %}">Admissions</a></li>
+                <li><a href="{% url 'team' %}">Team</a></li>
+                <li class="nav-cta"><a href="{% url 'index' %}" class="cta-button book-tour" id="bookTourBtn">Book a Tour</a></li>
+                <li class="nav-cta"><a href="{% url 'index' %}" class="cta-button enquire" id="enquireBtn">Enquire</a></li>
+            </ul>
+        </div>
+    </header>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Excellence in Christian Education</h1>
+            <p>Nurturing minds, hearts, and spirits since 1932</p>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section class="section intro-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>A Few Words About Us</h2>
+            </div>
+            <div class="intro-content">
+                <div class="intro-text">
+                    <p>Paterson Park Primary School is a Seventh-day Adventist primary school located in Orange Grove, Johannesburg. The school is under the Northern Conference of South Africa which is part of the Southern Africa Union Conference which is under the Southern Africa Indian Ocean Division.</p>
+                    
+                    <p>Paterson Park Primary School is an English medium independent school, operating in conjunction with the Department of Education of South Africa. It is registered with the Gauteng Department of Education, Umalusi and the Department of Social Development as a non-profit organisation. The school is accredited by the Adventist Accrediting Association, and Umalusi (Council for Quality Assurance in General and Further Education and Training – accreditation number 17 SCH01 00277).</p>
+                    
+                    <p>The school exists to educate primary school-aged children (grades R-7) to the best of our capacity. The school's values are articulated in the school's Vision and Mission Statements. We believe it to be our privilege and responsibility to provide Christian education for our children and those of the community; to provide an atmosphere which will facilitate their moral and spiritual development; to encourage their creative ability and the ability to think clearly and logically; to teach them the responsibilities and privileges of good citizenship and service to God, to their church, to their country, and to their fellow humankind.</p>
+                </div>
+                <div class="intro-image">
+                    <img src="https://storage.googleapis.com/textiletrace-bucket/post_images/2025-Prefects-Inaugural-Ceremony-1.jpg" alt="Prefect Ceremony">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision Section -->
+    <section class="section mission-vision">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Mission & Vision</h2>
+            </div>
+            <div class="mission-vision-container">
+                <div class="mission-box">
+                    <div class="mission-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <h3>Our Mission</h3>
+                    <p>Paterson Park School is committed to deliver a holistic education which concentrates on developing their pupils' spiritual, cognitive, social, emotional and physical abilities in an inclusive, non-discriminatory milieu.</p>
+                </div>
+                <div class="vision-box">
+                    <div class="vision-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                        </svg>
+                    </div>
+                    <h3>Our Vision</h3>
+                    <p>We aim to provide a safe, secure and stimulating environment in which our pupils can develop their full potential</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- History Section -->
+    <section class="section history-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our School History</h2>
+            </div>
+            <div class="history-content">
+                <div class="history-image">
+
+                    
+                    <img src="https://storage.googleapis.com/textiletrace-bucket/post_images/Speeches-1-1.jpg" alt="Prefect Ceremony">
+                </div>
+                <div class="history-text">
+                    <p>Established in 1932 as the Johannesburg SDA Church School, we moved to Orange Grove in 1953 and became known as Paterson Park School. The school provides a warm, caring environment where all children can learn to relate positively to each other, staff and other adults. It recognises the uniqueness of each individual and priority is given to helping every learner develop socially, spiritually, emotionally, academically and physically to the fullest extent possible.</p>
+                    
+                    <p>Paterson Park is a Christian School. The teachers are dedicated to encouraging learners to develop a love for God, a love and acceptance of other people, and a healthy self-esteem.</p>
+                    
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-year">1932</div>
+                            <div class="timeline-text">Established as the Johannesburg SDA Church School</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">1953</div>
+                            <div class="timeline-text">Moved to Orange Grove and became known as Paterson Park School</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">Present</div>
+                            <div class="timeline-text">Continuing our tradition of excellence in Christian education</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What We Offer Section -->
+    <section class="section offerings-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>What We Offer</h2>
+            </div>
+            <div class="offerings-grid">
+                <div class="offering-card">
+                    <div class="offering-image">
+                        <img src="https://storage.googleapis.com/textiletrace-bucket/post_images/Coding-and-Robotics-5-1.jpg" alt="Prefect Ceremony">
+                    </div>
+                    <div class="offering-content">
+                        <h3>Academic Excellence</h3>
+                        <p>We offer CAPS Curriculum as prescribed by the GDE. In addition to this we offer Bible as a subject.</p>
+                        <ul class="offering-list">
+                            <li>96% pass average in the last five years</li>
+                            <li>Personal online learning account with My Cyberwall</li>
+                            <li>Balanced environment where natural abilities are challenged</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="offering-card">
+                    <div class="offering-image">
+                        <img src="https://storage.googleapis.com/textiletrace-bucket/post_images/Coding-and-Robotics-4.jpg" alt="Art Exhibition">
+                    </div>
+                    <div class="offering-content">
+                        <h3>Curriculum</h3>
+                        <p>We offer a comprehensive curriculum that develops the whole child.</p>
+                        <ul class="offering-list">
+                            <li>Bible</li>
+                            <li>Mathematics</li>
+                            <li>English</li>
+                            <li>Life Skills & Life Orientation</li>
+                            <li>EMS & Social Sciences</li>
+                            <li>Natural Sciences & Technology</li>
+                            <li>Creative Arts</li>
+                            <li>IsiZulu and Afrikaans</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="offering-card">
+                    <div class="offering-image">
+                        <img src="https://storage.googleapis.com/textiletrace-bucket/post_images/Ranger-Class-1-1.jpg" alt="Technology Fair">
+                    </div>
+                    <div class="offering-content">
+                        <h3>Student Development</h3>
+                        <p>Paterson Park School gives learners opportunities to:</p>
+                        <ul class="offering-list">
+                            <li>Develop academic excellence</li>
+                            <li>Mature in physical skills</li>
+                            <li>Make positive social adjustments</li>
+                            <li>Build lasting peer relationships</li>
+                            <li>Cultivate critical thinking</li>
+                            <li>Grow in Christian values</li>
+                            <li>Create a sense of pride</li>
+                            <li>Feel secure and nurtured</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-number">96%</div>
+                    <div class="stat-label">Pass Rate Average</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">1932</div>
+                    <div class="stat-label">Year Established</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">30</div>
+                    <div class="stat-label">Students Per Class</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">240</div>
+                    <div class="stat-label">Total School Capacity</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- School Hours Section -->
+    <section class="section hours-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>School Hours</h2>
+            </div>
+            <div class="hours-container">
+                <div class="hours-content">
+                    <div class="hours-text">
+                        <p>School begins promptly at <strong>7:45 AM</strong> every day.</p>
+                        <p><strong>Monday to Thursday:</strong></p>
+                        <ul>
+                            <li>Grade R-3: 7:45 AM - 2:00 PM</li>
+                            <li>Grade 4-7: 7:45 AM - 2:30 PM</li>
+                        </ul>
+                        <p><strong>Friday:</strong></p>
+                        <ul>
+                            <li>All grades: 7:45 AM - 1:30 PM</li>
+                        </ul>
+                        <div class="hours-note">
+                            <p>Please ensure your child arrives at school on time. The school gates open at 7:00 AM for early drop-offs.</p>
+                        </div>
+                    </div>
+                    <div class="hours-image">
+                        <img src="https://storage.googleapis.com/textiletrace-bucket/post_images/time.png" alt="Technology Fair">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="cta-title">Join Our Christian Family</h2>
+            <p class="cta-text">We invite you to become part of our school community where we nurture young minds in a Christ-centered environment. Contact us today to learn more about admissions or to schedule a tour of our campus.</p>
+            <div class="cta-buttons">
+                <a href="{% url 'index' %}" class="cta-btn primary">Book a Tour</a>
+                <a href="{% url 'index' %}" class="cta-btn secondary">Enquire Now</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Add any JavaScript functionality here if needed
+    </script>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navMenu = document.querySelector('.nav-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Slideshow functionality
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.slideshow-nav-dot');
+        let currentSlide = 0;
+        let slideInterval;
+
+        // Initialize slideshow
+        function startSlideshow() {
+            slideInterval = setInterval(nextSlide, 5000);
+        }
+
+        // Show a specific slide
+        function showSlide(index) {
+            // Remove active class from all slides and dots
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            // Add active class to current slide and dot
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+            
+            // Update current slide index
+            currentSlide = index;
+        }
+
+        // Go to next slide
+        function nextSlide() {
+            let nextIndex = currentSlide + 1;
+            if (nextIndex >= slides.length) {
+                nextIndex = 0;
+            }
+            showSlide(nextIndex);
+        }
+
+        // Add click event listeners to dots
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                clearInterval(slideInterval);
+                showSlide(index);
+                startSlideshow();
+            });
+        });
+
+        // Start the slideshow
+        startSlideshow();
+    </script>
+</body>
+</html>
