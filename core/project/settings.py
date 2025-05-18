@@ -24,7 +24,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
-    'submit',
     #'crispy_forms',
     'django.contrib.humanize',
     "django.contrib.sites",
@@ -60,7 +59,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'allauth.account.middleware.AccountMiddleware',
 ]
-AUTH_USER_MODEL = 'submit.CustomUser'
+
 ROOT_URLCONF = 'core.project.urls'
 SITE_ID=2
 SOCIALACCOUNT_LOGIN_ON_GET = True

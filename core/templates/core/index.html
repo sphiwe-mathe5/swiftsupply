@@ -1,0 +1,342 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swift Supply Solutions - Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <a href="#">Swift supply<span> solutions</span></a>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active">
+                        <a href="#"><i class='bx bxs-dashboard'></i> Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class='bx bx-transfer-alt'></i> Trades</a>
+                    </li>
+                    <li>
+                        <a href="/documents"><i class='bx bx-file'></i> Documents</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class='bx bx-wallet'></i> Wallet</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class='bx bx-user'></i> Profile</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class='bx bx-cog'></i> Settings</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="#" class="support-link"><i class='bx bx-support'></i> Support</a>
+                <a href="#" class="logout-link"><i class='bx bx-log-out'></i> Logout</a>
+            </div>
+        </aside>
+        <main class="main-content">
+            <header class="dashboard-header">
+                <div class="header-left">
+                    <button class="menu-toggle" id="menu-toggle">
+                        <i class='bx bx-menu'></i>
+                    </button>
+                    <h1>Dashboard</h1>
+                </div>
+                <div class="header-right">
+                    <div class="notifications">
+                        <button class="notification-btn">
+                            <i class='bx bx-bell'></i>
+                            <span class="notification-badge">3</span>
+                        </button>
+                    </div>
+                    <div class="user-profile">
+                        <img src="https://storage.googleapis.com/textiletrace-bucket/post_images/pic5.jpeg" alt="User Profile" class="profile-img">
+                        <div class="user-info">
+                            <h4>Alfred Moloto</h4>
+                            <span>Seller</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <div class="dashboard-content">
+                <div class="status-cards">
+                    <div class="status-card">
+                        <div class="status-card-header">
+                            <h3>KYC Verification</h3>
+                            <i class='bx bx-check-shield'></i>
+                        </div>
+                        <div class="status-card-body">
+                            <div class="status-indicator approved">
+                                <span class="status-dot"></span>
+                                <span class="status-text">Approved</span>
+                            </div>
+                            <p>Your account has been fully verified</p>
+                        </div>
+                        <div class="status-card-footer">
+                            <a href="#">View Details</a>
+                        </div>
+                    </div>
+                    <div class="status-card">
+                        <div class="status-card-header">
+                            <h3>Wallet Status</h3>
+                            <i class='bx bx-wallet'></i>
+                        </div>
+                        <div class="status-card-body">
+                            <div class="status-indicator connected">
+                                <span class="status-dot"></span>
+                                <span class="status-text">Connected</span>
+                            </div>
+                            <p>Metamask Wallet: 0x71C...8F3E</p>
+                        </div>
+                        <div class="status-card-footer">
+                            <a href="#">Manage Wallet</a>
+                        </div>
+                    </div>
+                    <div class="status-card">
+                        <div class="status-card-header">
+                            <h3>Profile Completion</h3>
+                            <i class='bx bx-user-check'></i>
+                        </div>
+                        <div class="status-card-body">
+                            <div class="completion-indicator">
+                                <div class="completion-bar">
+                                    <div class="completion-progress" style="width: 85%;"></div>
+                                </div>
+                                <span class="completion-text">85% Complete</span>
+                            </div>
+                            <p>Complete your profile to unlock all features</p>
+                        </div>
+                        <div class="status-card-footer">
+                            <a href="#">Complete Profile</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="dashboard-grid">
+                    <div class="dashboard-card quick-actions">
+                        <div class="card-header">
+                            <h2>Quick Actions</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="actions-grid">
+                                <a href="#" class="action-item">
+                                    <div class="action-icon">
+                                        <i class='bx bx-transfer'></i>
+                                    </div>
+                                    <span>Start Trade</span>
+                                </a>
+                                <a href="#" class="action-item">
+                                    <div class="action-icon">
+                                        <i class='bx bx-upload'></i>
+                                    </div>
+                                    <span>Upload Documents</span>
+                                </a>
+                                <a href="#" class="action-item">
+                                    <div class="action-icon">
+                                        <i class='bx bx-coin-stack'></i>
+                                    </div>
+                                    <span>View Contracts</span>
+                                </a>
+                                <a href="#" class="action-item">
+                                    <div class="action-icon">
+                                        <i class='bx bx-message-square-detail'></i>
+                                    </div>
+                                    <span>Contact Buyer</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dashboard-card notifications-card">
+                        <div class="card-header">
+                            <h2>Recent Notifications</h2>
+                            <a href="#" class="view-all">View All</a>
+                        </div>
+                        <div class="card-body">
+                            <ul class="notification-list">
+                                <li class="notification-item unread">
+                                    <div class="notification-icon trade">
+                                        <i class='bx bx-transfer-alt'></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <h4>New Trade Request</h4>
+                                        <p>You have received a new trade request from Acme Corp.</p>
+                                        <span class="notification-time">2 hours ago</span>
+                                    </div>
+                                </li>
+                                <li class="notification-item unread">
+                                    <div class="notification-icon document">
+                                        <i class='bx bx-file'></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <h4>Document Approved</h4>
+                                        <p>Your business registration document has been approved.</p>
+                                        <span class="notification-time">Yesterday</span>
+                                    </div>
+                                </li>
+                                <li class="notification-item">
+                                    <div class="notification-icon message">
+                                        <i class='bx bx-message-square-detail'></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <h4>New Message</h4>
+                                        <p>You have a new message from the support team.</p>
+                                        <span class="notification-time">2 days ago</span>
+                                    </div>
+                                </li>
+                                <li class="notification-item">
+                                    <div class="notification-icon wallet">
+                                        <i class='bx bx-wallet'></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <h4>Wallet Connected</h4>
+                                        <p>Your blockchain wallet has been successfully connected.</p>
+                                        <span class="notification-time">3 days ago</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="dashboard-card audit-trail">
+                        <div class="card-header">
+                            <h2>Blockchain Activity Log</h2>
+                            <a href="#" class="view-all">View All</a>
+                        </div>
+                        <div class="card-body">
+                            <ul class="transaction-list">
+                                <li class="transaction-item">
+                                    <div class="transaction-icon">
+                                        <i class='bx bx-check-circle'></i>
+                                    </div>
+                                    <div class="transaction-content">
+                                        <div class="transaction-header">
+                                            <h4>Contract Execution</h4>
+                                            <span class="transaction-hash">0x71C...8F3E</span>
+                                        </div>
+                                        <p>Smart contract executed for Trade #1234</p>
+                                        <div class="transaction-meta">
+                                            <span class="transaction-time">May 7, 2023 - 14:32</span>
+                                            <span class="transaction-status confirmed">Confirmed</span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="transaction-item">
+                                    <div class="transaction-icon">
+                                        <i class='bx bx-file-blank'></i>
+                                    </div>
+                                    <div class="transaction-content">
+                                        <div class="transaction-header">
+                                            <h4>Document Hash Stored</h4>
+                                            <span class="transaction-hash">0x93D...2A7B</span>
+                                        </div>
+                                        <p>Business registration document hash stored on blockchain</p>
+                                        <div class="transaction-meta">
+                                            <span class="transaction-time">May 5, 2023 - 09:15</span>
+                                            <span class="transaction-status confirmed">Confirmed</span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="transaction-item">
+                                    <div class="transaction-icon">
+                                        <i class='bx bx-transfer'></i>
+                                    </div>
+                                    <div class="transaction-content">
+                                        <div class="transaction-header">
+                                            <h4>Payment Released</h4>
+                                            <span class="transaction-hash">0x45E...9C2D</span>
+                                        </div>
+                                        <p>Payment released for Trade #1122</p>
+                                        <div class="transaction-meta">
+                                            <span class="transaction-time">May 2, 2023 - 16:48</span>
+                                            <span class="transaction-status confirmed">Confirmed</span>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="dashboard-card support-card">
+                        <div class="card-header">
+                            <h2>Support & Help</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="support-options">
+                                <a href="#" class="support-option">
+                                    <div class="support-icon">
+                                        <i class='bx bx-message-rounded-dots'></i>
+                                    </div>
+                                    <div class="support-content">
+                                        <h4>Live Chat</h4>
+                                        <p>Chat with our support team</p>
+                                    </div>
+                                    <i class='bx bx-chevron-right'></i>
+                                </a>
+                                <a href="#" class="support-option">
+                                    <div class="support-icon">
+                                        <i class='bx bx-envelope'></i>
+                                    </div>
+                                    <div class="support-content">
+                                        <h4>Email Support</h4>
+                                        <p>support@swiftsupply.com</p>
+                                    </div>
+                                    <i class='bx bx-chevron-right'></i>
+                                </a>
+                                <a href="#" class="support-option">
+                                    <div class="support-icon">
+                                        <i class='bx bx-phone'></i>
+                                    </div>
+                                    <div class="support-content">
+                                        <h4>Phone Support</h4>
+                                        <p>+27 (73) 123-4567</p>
+                                    </div>
+                                    <i class='bx bx-chevron-right'></i>
+                                </a>
+                                <a href="#" class="support-option">
+                                    <div class="support-icon">
+                                        <i class='bx bx-help-circle'></i>
+                                    </div>
+                                    <div class="support-content">
+                                        <h4>Knowledge Base</h4>
+                                        <p>Browse FAQs and tutorials</p>
+                                    </div>
+                                    <i class='bx bx-chevron-right'></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menu-toggle');
+            const sidebar = document.querySelector('.sidebar');
+            const mainContent = document.querySelector('.main-content');
+            menuToggle.addEventListener('click', function() {
+                sidebar.classList.toggle('collapsed');
+                mainContent.classList.toggle('expanded');
+            });
+            function checkWidth() {
+                if (window.innerWidth < 768) {
+                    sidebar.classList.add('collapsed');
+                    mainContent.classList.add('expanded');
+                } else {
+                    sidebar.classList.remove('collapsed');
+                    mainContent.classList.remove('expanded');
+                }
+            }
+            checkWidth();
+            window.addEventListener('resize', checkWidth);
+        });
+    </script>
+</body>
+</html>
