@@ -12,7 +12,6 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='.vercel.app,127.0.0.1,.com').split(',')
 ADMIN_PATH = config('ADMIN_PATH')
-OPENAI_API_KEY = config('OPENAI_API_KEY')
 
 
 INSTALLED_APPS = [
@@ -104,25 +103,16 @@ TEMPLATES = [
 ]
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': config('DATABASE_ENGINE'),
-        'NAME': config('DATABASE_NAME'),
-        'USER': config('DATABASE_USER'),
-        'PASSWORD': config('DATABASE_PASSWORD'),
-       'HOST': config('DATABASE_HOST'),
-        'PORT': config('DATABASE_PORT'),
-    }
-}
+
 
 # settings.py
 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': BASE_DIR / 'db.sqlite3',  #
-#    }
-#}
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',  #
+    }
+}
 
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -168,31 +158,6 @@ LOGOUT_REDIRECT_URL = '/'
 LOGIN_URL = 'login'
 
 
-SILENCED_SYSTEM_CHECKS = config('SILENCED_SYSTEM_CHECKS', cast=Csv())
-
-AXES_FAILURE_LIMIT = config('AXES_FAILURE_LIMIT', cast=int)
-
-AXES_COOLOFF_TIME = 1
-
-AXES_ONLY_ADMIN_SITE = config('AXES_ONLY_ADMIN_SITE', cast=bool)
-
-AXES_LOCKOUT_TEMPLATE = config('AXES_LOCKOUT_TEMPLATE')
-
-AXES_LOCKOUT_URL = config('AXES_LOCKOUT_URL')
-AXES_USERNAME_FORM_FIELD = config('AXES_USERNAME_FORM_FIELD')
-
-AXES_RESET_ON_SUCCESS = config('AXES_RESET_ON_SUCCESS', cast=bool)
-
-AXES_NEVER_LOCKOUT_WHITELIST = config('AXES_NEVER_LOCKOUT_WHITELIST',
-                                      cast=bool)
-AXES_IP_WHITELIST = config('AXES_IP_WHITELIST', cast=Csv())
-
-AXES_ENABLE_ACCESS_FAILURE_LOG = config('AXES_ENABLE_ACCESS_FAILURE_LOG',
-                                        cast=bool)
-
-AXES_RESET_ON_SUCCESS = config('AXES_RESET_ON_SUCCESS', cast=bool)
-
-AXES_LOCKOUT_PARAMETERS = config('AXES_LOCKOUT_PARAMETERS', cast=Csv())
 
 
 X_FRAME_OPTIONS = 'DENY'
