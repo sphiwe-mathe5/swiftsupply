@@ -4,6 +4,7 @@ from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
 from core.project.settings import ADMIN_PATH
+from django.urls import include
 
 from core import views 
 
@@ -13,6 +14,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
     path('documents/', views.team, name='team'),
+    path('accounts/', include('allauth.urls')), #Allauth's built-in URLs
 
 ]
 

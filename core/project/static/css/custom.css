@@ -1,0 +1,15 @@
+body {
+  font-family: "Segoe UI", sans-serif;
+}
+
+.card {
+  border-radius: 1rem;
+}
+
+.btn {
+  border-radius: .5rem;
+}
+
+.bg-light {
+  background-color: #f8f9fa !important;
+}

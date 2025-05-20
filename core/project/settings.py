@@ -23,13 +23,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
-    #'crispy_forms',
+    'crispy_forms',
     'django.contrib.humanize',
     "django.contrib.sites",
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
-    #'crispy_bootstrap4',
+    'crispy_bootstrap4',
+    "accounts",
+    
 ]
 SOCIALACCOUNT_PROVIDERS = {
     "google": {
@@ -84,6 +86,7 @@ CHANNEL_LAYERS = {
 }
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap4'
 
 
 TEMPLATES = [
@@ -102,6 +105,24 @@ TEMPLATES = [
     },
 ]
 
+SITE_ID = 1
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+ACCOUNT_FORMS = {
+    'signup': 'accounts.forms.CustomSignupForm',
+}
+
+LOGIN_REDIRECT_URL = '/'
+ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/login/'
+
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'optional'  # can be 'mandatory' or 'none'
 
 
 
@@ -153,8 +174,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = 'dashboard'
+LOGOUT_REDIRECT_URL = 'login'
 LOGIN_URL = 'login'
 
 
